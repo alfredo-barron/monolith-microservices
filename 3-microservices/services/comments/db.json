@@ -1,0 +1,44 @@
+{
+    "comments": [
+        {
+            "post": 1,
+            "content": "Que te paso, cuentame",
+            "user": 3
+        },
+        {
+            "post": 1,
+            "content": "Me voy a casar <3",
+            "user": 2
+        },
+        {
+            "post": 2,
+            "content": "Animo",
+            "user": 3
+        },
+        {
+            "post": 2,
+            "content": "Cuentas conmigo",
+            "user": 1
+        },
+        {
+            "post": 2,
+            "content": "Todo es pasajero, cualquier cosa marcame",
+            "user": 2
+        },
+        {
+            "post": 2,
+            "content": "Gracias a todos",
+            "user": 4
+        },
+        {
+            "post": 3,
+            "content": "Felicidades",
+            "user": 1
+        },
+        {
+            "post": 3,
+            "content": "Te deseo mucho exito",
+            "user": 2
+        }
+    ]
+}

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>Cliente</title>
+</head>
+<body>
+<br><br>
+<main>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"><h1>Cliente web</h1></div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+        <div class="container">
+        <h3>Publicaciones</h3>
+        <div id="posts" class="list-group"></div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <div class="container">
+            <h3>Usuarios recientes</h3>
+            <div id="users" class="list-group"></div>
+        </div>
+    </div>
+</div>
+
+</main>
+
+
+
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+-->
+<script>
+
+    const api_url = 'http://172.21.64.168:5000';
+
+    async function getPosts(url) {
+        const response = await fetch(api_url + "/api/posts");
+        var data = await response.json();
+        console.log(data);
+        show(data)
+    }
+
+    async function getUser(id) {
+        const response = await fetch(api_url + "/api/users/" + id);
+        var user = await response.json();
+        console.log(user);
+        return user;
+    }
+
+    getPosts(api_url);
+
+    function show(data) {
+        let elem_post = document.getElementById("posts");
+
+        for (let index = 0; index < data.length; index++) {
+            const element = data[index];
+            const user = getUser(element['createdBy']).then(user => user.username);
+            elem_post.innerHTML += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">\n' +
+              '<img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">\n' +
+              '<div class="d-flex gap-2 w-100 justify-content-between">\n' +
+                '<div>\n' +
+                  '<h6 class="mb-0">' + user + '</h6>\n' +
+                  '<p class="mb-0 opacity-75">' + element['content'] + '</p>\n' +
+                '</div>\n' +
+                '<small class="opacity-50 text-nowrap">now</small>\n' +
+              '</div>\n' +
+            '</a>\n';
+        }
+    }
+
+    
+  
+    
+</script>
+</body>
+</html>

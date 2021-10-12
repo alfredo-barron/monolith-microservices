@@ -1,0 +1,24 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "username": "revilla",
+            "name": "Casilda Revilla"
+        },
+        {
+            "id": 2,
+            "username": "mercedestena",
+            "name": "Mercedes Tena"
+        },
+        {
+            "id": 3,
+            "username": "leo90",
+            "name": "Leo Osuna"
+        },
+        {
+            "id": 4,
+            "username": "armando",
+            "name": "Armando Chen"
+        }
+    ]
+}

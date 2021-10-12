@@ -1,0 +1,19 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "content": "Hola, estoy emocionada",
+            "createdBy": 2
+        },
+        {
+            "id": 2,
+            "content": "La vida es aburrida",
+            "createdBy": 4
+        },
+        {
+            "id": 3,
+            "content": "Me aceptaron en la universidad!!!",
+            "createdBy": 1
+        }
+    ]
+}

@@ -1,0 +1,83 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "username": "revilla",
+            "name": "Casilda Revilla"
+        },
+        {
+            "id": 2,
+            "username": "mercedestena",
+            "name": "Mercedes Tena"
+        },
+        {
+            "id": 3,
+            "username": "leo90",
+            "name": "Leo Osuna"
+        },
+        {
+            "id": 4,
+            "username": "armando",
+            "name": "Armando Chen"
+        }
+    ],
+    "posts": [
+        {
+            "id": 1,
+            "content": "Hola, estoy emocionada",
+            "createdBy": 2
+        },
+        {
+            "id": 2,
+            "content": "La vida es aburrida",
+            "createdBy": 4
+        },
+        {
+            "id": 3,
+            "content": "Me aceptaron en la universidad!!!",
+            "createdBy": 1
+        }
+    ],
+    "comments": [
+        {
+            "post": 1,
+            "content": "Que te paso, cuentame",
+            "user": 3
+        },
+        {
+            "post": 1,
+            "content": "Me voy a casar <3",
+            "user": 2
+        },
+        {
+            "post": 2,
+            "content": "Animo",
+            "user": 3
+        },
+        {
+            "post": 2,
+            "content": "Cuentas conmigo",
+            "user": 1
+        },
+        {
+            "post": 2,
+            "content": "Todo es pasajero, cualquier cosa marcame",
+            "user": 2
+        },
+        {
+            "post": 2,
+            "content": "Gracias a todos",
+            "user": 4
+        },
+        {
+            "post": 3,
+            "content": "Felicidades",
+            "user": 1
+        },
+        {
+            "post": 3,
+            "content": "Te deseo mucho exito",
+            "user": 2
+        }
+    ]
+}
