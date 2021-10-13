@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app1:
+    image: alfredobarron/monolith:1
+    ports:
+     - "5001:5000"
+  #app2:
+  #  image: alfredobarron/monolith:1
+  #  ports:
+  #   - "5002:5000"
+  lb:
+    image: alfredobarron/loadbalancig-monolith:1
+    ports:
+     - "8080:80"
+    depends_on:
+     - app1
+    # - app2
+        
