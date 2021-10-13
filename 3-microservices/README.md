@@ -1,0 +1,1 @@
+![Arquitectura monolítca](../images/MicroservicesofMonolith.png)
