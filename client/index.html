@@ -9,7 +9,19 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
+    <style>
+        .title {
+            font-size: 14px;
+            font-weight:bold;
+        }
+        .komen {
+            font-size:14px;
+        }
+        .geser {
+            margin-left:55px;
+            margin-top:5px;
+        }
+    </style>
     <title>Cliente</title>
 </head>
 
@@ -27,7 +39,7 @@
 
         <div class="row">
             <div class="col-md-1"></div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="container">
                     <h3>Publicaciones</h3>
                     <div id="posts" class="list-group"></div>
@@ -61,28 +73,48 @@
     <script>
         // Main function that enable an async context over all the inside functions
         async function main() {
-            // const api_url = 'http://172.21.64.168:5000';
-            const api_url = 'http://localhost:5000';
+            const api_url = 'http://172.21.64.168:5000';
+            //const api_url = 'http://localhost:5000';
 
             async function show(data) {
                 let elem_post = document.getElementById("posts");
 
                 for (let index = 0; index < data.length; index++) {
-                    const element = data[index];
-                    const userId = element['createdBy']
+                    const post = data[index]
+                    const postId = post['id']
+                    const userId = post['createdBy']
+                    const content = post['content']
                     const user = await getUser(userId) // or const username = await getUser(userId).then(user=> Promise.resolve(user.username))
-                    const username = user.username // or  const username = user['username']
+                    const comments = await getComments(postId)
+                    const username = user['username'] // or  const username = user['username']
 
-                    elem_post.innerHTML += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">\n' +
+                    elem_post.innerHTML += '<div class="card w-95"><a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">\n' +
                         '<img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">\n' +
                         '<div class="d-flex gap-2 w-100 justify-content-between">\n' +
                         '<div>\n' +
-                        '<h6 class="mb-0">' + username + '</h6>\n' +
-                        '<p class="mb-0 opacity-75">' + element['content'] + '</p>\n' +
+                        '<h6 class="mb-0"><b>' + username + '</b></h6>\n' +
+                        '<p class="mb-0 opacity-75">' + content + '</p>\n' +
                         '</div>\n' +
-                        '<small class="opacity-50 text-nowrap">now</small>\n' +
+                        '<small class="opacity-50 text-nowrap">post</small>\n' +
+                        '</div>\n';
+
+                    for (let index = 0; index < comments.length; index++) {
+                        const comment = comments[index];
+                        const userIdComment = comment['user'];
+                        const userComment = await getUser(userIdComment)
+                        const usernameComment = userComment['username']
+                        elem_post.innerHTML += '<div class="card w-50"><a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">\n' +
+                        '<img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">\n' +
+                        '<div class="d-flex gap-2 w-100 justify-content-between">\n' +
+                        '<div>\n' +
+                        '<h6 class="mb-0"><b>' + usernameComment + '</b></h6>\n' +
+                        '<p class="mb-0 opacity-75">' + comment['content'] + '</p>\n' +
                         '</div>\n' +
-                        '</a>\n';
+                        '<small class="opacity-50 text-nowrap">comment</small>\n' +
+                        '</div>\n' +
+                        '</a></div>\n'
+                    }
+                    
                 }
             }
 
@@ -105,6 +137,14 @@
                 // console.log(user)
                 // var user = await response.json();
                 return user;
+            }
+
+            async function getComments(id) {
+                const comments = await fetch(api_url + "/api/comments/posts/" + id)
+                .then(response => response.json())
+                .then(comments => Promise.resolve(comments));
+                //console.log(comments);
+                return comments;
             }
 
             await getPosts(api_url);
