@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, make_response
+from flask import Flask, jsonify
 from flask_api import status
 from flask_cors import CORS
 import simplejson as json
